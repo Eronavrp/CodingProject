@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='log.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+			<div class="col-md-5 mx-auto">
+			<div id="first">
+				<div class="myform form ">
+					 <div class="logo mb-3">
+						 <div class="col-md-12 text-center">
+							<h1>Login</h1>
+						 </div>
+					</div>
+                   <form action="/log" method="post" name="login">
+                           <div class="form-group">
+                              <label for="exampleInputEmail1">Username</label>
+                              <input type="text" name="username"  class="form-control" id="usern" aria-describedby="emailHelp" placeholder="Enter username">
+                           </div>
+                           <div class="form-group">
+                              <label for="exampleInputEmail1">Password</label>
+                              <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
+                           </div>
+                           {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+                           {% if messages %}                            <!-- check if there are any messages -->
+                                {% for message in messages %}            <!-- loop through the messages -->
+                                  <p style="color: dimgray;font-style: italic;">{{message}}</p>   <br/>                <!-- display each message in a paragraph tag -->
+                                {% endfor %}
+                           {% endif %}
+                       {% endwith %}
+                           <div class="form-group">
+                              <p class="text-center">By signing up you accept our <a href="#">Terms Of Use</a></p>
+                           </div>
+                           <div class="col-md-12 text-center ">
+                              <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
+                           </div>
+                           <div class="col-md-12 ">
+                              <div class="login-or">
+                                 <hr class="hr-or">
+                                 <span class="span-or">or</span>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <p class="text-center">Don't have account? <a href="/register" id="signup">Sign up here</a></p>
+                           </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+         </div>
+    </div>
+</body>
+</html>

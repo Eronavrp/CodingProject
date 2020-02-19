@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Post</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/success">PicThis</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/profile">Profile <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/discover">Discover</a>
+            </li>
+          </ul>
+          <span class="navbar-text">
+                    <a class="nav-link" href="/logout">Log out</a>
+          </span>
+        </div>
+      </nav>
+    <div class="container-fluid" style="margin-top:3%;">
+        <div class="row">
+            <div class="col-xl-8 col-md-8 col-sm-12">
+                <div card border-0 shadow>
+                    <img src={{foto.content}} class="card-img-top">
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-4 col-sm-12">
+            <div class="row" style="max-height:77vh"></div>
+            <div style="margin-bottom:10%;">
+            {% for com in comments %}
+            <label><strong>@ {{com.username}}</strong> {{com.content}}</label><br>
+            {% endfor %}
+            </div>
+            <form action="/post/{{foto.post_id}}" method="POST">
+                <input type="text" name="comment" placeholder="comment...">
+                <input type="submit" class="bg-light" value="Post">
+            </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

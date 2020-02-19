@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" data-auto-replace-svg="nest"></script>    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/success">PicThis</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/profile">Profile <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/discover">Discover</a>
+            </li>
+          </ul>
+          <span class="navbar-text">
+                    <a class="nav-link" href="/logout">Log out</a>
+          </span>
+        </div>
+      </nav>
+  
+  <!-- Page Content -->
+  <div class="container-fluid" style="margin-top: 10%;">
+    <div class="row">
+      <!-- Team Member 1 -->
+      <div class="col-xl-7 col-md-7 col-sm-12">
+        {% for photo in photoss %}
+      <div class="col-xl-11 col-md-11 mb-11">
+        <div class="card border-1 " style="margin-left:20%;margin-bottom: 7%;">
+          <div class="card-body">
+           <a href="/detail/{{photo.user_id}}" style="color:black;text-decoration:none;float:left"><h4 style="float:left">@{{photo.username}}</h4></a>
+            {% if session['user_id'] == photo.user_id %}
+            <div class="dropdown dropleft float-right">
+              <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/posts/{{photo.post_id}}/delete">Delete</a>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+         
+          <div>
+          <img src={{photo.content}} class="card-img-top" alt="...">
+          </div>
+         
+          <div class="card-body">
+            <label><a href="/post/{{photo.post_id}}/like"><i class="fas fa-heart" style="font-size: 27px;"></i></a> {{photo.tot}}</label><br>
+            <a href="/phh/{{photo.post_id}}">
+            <label>View all <strong>{{photo.tot1}}</strong> comments ... </label>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+      </div>
+      <div class="col-xl-4 col-md-4 col-sm-0">
+        <div class="row">
+        <div class="col-xl-4"style="background:darkblue">
+        </div>
+        <div class="col-xl-8">
+        <h1>{{user.firstName}} {{user.lastName}}</h1>
+        <h3 style="color: darkblue;">@{{user.username}}</h3>
+        </div>
+        </div>
+      </div>
+      
+    </div>
+    <!-- /.row -->
+  
+  </div>
+  <!-- /.container -->
+</body>
+</html>
