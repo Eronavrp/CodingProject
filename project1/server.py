@@ -146,7 +146,7 @@ def home():
         return render_template("home.html", user=user[0],photoss=photos)
     return render_template("home.html",user=user[0])
 
-app.config["IMAGE_UPLOADS"] = "C:/Users/erona/Documents/CodingDojo/python_track/flask_mysql/project1/static/img"
+app.config["IMAGE_UPLOADS"] = "static/img"
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["JPEG", "JPG", "PNG", "GIF"]
 
 def allowed_image(filename):
